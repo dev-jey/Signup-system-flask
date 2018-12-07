@@ -51,5 +51,5 @@ class Validation():
             if user["username"].lower().strip() == self.data['username'].lower().strip():
                 abort(406, "Username already taken")
 
-            if user["email"].lower().strip() == self.data['email'].lower().strip():
+            elif user["email"].lower().strip() == self.data['email'].lower().strip():
                 abort(406, "Email already taken")
