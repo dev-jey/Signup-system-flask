@@ -1,19 +1,22 @@
-import psycopg2
-import os
+'''This module is responsible for all database connections and tables'''
 from sys import modules
+import os
+import psycopg2
 
 
-class Db(object):
+class Db():
+    '''Handles all database functions'''
     def __init__(self):
         self.conn = None
 
-    def createConnection(self):
+    def create_connection(self):
+        '''Creates connection for the app to database'''
         try:
             if 'pytest' in modules:
-                URL = os.getenv("TEST_DB")
+                url = os.getenv("TEST_DB")
             if os.getenv("APP_SETTINGS") == "development":
-                URL = os.getenv("DEV_DB")
-            self.conn = psycopg2.connect(database=URL)
+                url = os.getenv("DEV_DB")
+            self.conn = psycopg2.connect(database=url)
         except Exception:
             try:
                 if os.getenv("APP_SETTINGS") == "production":
@@ -24,12 +27,13 @@ class Db(object):
         self.conn.autocommit = True
         return self.conn
 
-    def closeConnection(self):
+    def close_connection(self):
         '''method to close connections'''
         return self.conn.close()
 
-    def createTables(self):
-        cursor = self.createConnection().cursor()
+    def create_tables(self):
+        '''Creates all tables in the database'''
+        cursor = self.create_connection().cursor()
         tables = [
             """CREATE TABLE IF NOT EXISTS users(
                 id serial PRIMARY KEY,
@@ -44,7 +48,8 @@ class Db(object):
         self.conn.close()
 
     def destroy_tables(self):
-        cursor = self.createConnection().cursor()
+        '''Destroys all tables after each test'''
+        cursor = self.create_connection().cursor()
         cursor.execute(
             "SELECT table_schema,table_name FROM information_schema.tables "
             " WHERE table_schema = 'public' ORDER BY table_schema,table_name"

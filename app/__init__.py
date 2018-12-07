@@ -1,7 +1,10 @@
+'''This module creates the app using a function, 
+and determines the configuration settings to use'''
 from flask import Flask, Blueprint, make_response, jsonify
-from instance.config import app_config
 from flask_cors import CORS
-from .v1 import blprint1 as version1
+
+from instance.config import app_config
+from .v1 import BLUE as version1
 
 
 def create_app(config_name):
@@ -17,13 +20,13 @@ def create_app(config_name):
     def not_found(e):
         '''Defining a custom message for not found'''
         return make_response(jsonify({
-            "error": "Oops! wrong url"
+            "message": "Oops! wrong url"
         }), 404)
 
     @app.errorhandler(500)
     def server_error(e):
         return make_response(jsonify({
-            "error": "An internal error occured"
+            "message": "An internal error occured"
         }), 500)
 
     return app
