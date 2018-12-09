@@ -6,3 +6,4 @@ Flask_Cors==3.0.7
 pytest==4.0.1
 pytest-cov==2.6.0
 coverage==4.5.2
+gunicorn==19.9.0
