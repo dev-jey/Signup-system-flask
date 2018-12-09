@@ -8,6 +8,6 @@ This is a simple signup endpoint
 <https://signup-app-system.herokuapp.com/>
 # Endpoint
 
-| Endpoint | route        | Method |  
-|----------|--------------|--------|
-| Signup   | /auth/signup | POST   |
+| Endpoint | route              | Method |  
+|----------|--------------------|--------|
+| Signup   | api/v1/auth/signup | POST   |
