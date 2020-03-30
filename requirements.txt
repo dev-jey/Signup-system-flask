@@ -1,5 +1,5 @@
 Flask==1.0.2
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 psycopg2==2.7.6.1
 Flask_RESTful==0.3.6
 Flask_Cors==3.0.7
