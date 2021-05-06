@@ -2,7 +2,7 @@ Flask==1.0.2
 Werkzeug==0.14.1
 psycopg2==2.7.6.1
 Flask_RESTful==0.3.6
-Flask_Cors==3.0.7
+Flask_Cors==3.0.9
 pytest==4.0.1
 pytest-cov==2.6.0
 coverage==4.5.2
